@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import {CiSearch} from 'react-icons/ci'
 import {CgShoppingCart} from 'react-icons/cg'
+import { CgUser } from 'react-icons/cg'
 import logo from '../src/assets/Logo.png'
 //import Link from 'next/link'
 import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
@@ -17,62 +18,45 @@ const Navbar = ({Searchproducts}) => {
 
   const router = useRouter();
   const isActive = (path) => router.pathname === path;
+ 
+  // Dropdown items for small screen menu
+  const menuItems = [
+    { href: '/female', label: 'Female' },
+    { href: '/male', label: 'Male' },
+    { href: '/kids', label: 'Kids' },
+    { href: '/products', label: 'All Products' }
+  ];
+
+  // Cart button element
+  const CartButton = (
+    <Link href='/cart'>
+      <button className='cart-small-screen' onClick={() => setShowCart(false)}>
+        <CgShoppingCart size={22} />
+        <span className='cart-item-qty'>{totalQty}</span>
+      </button>
+    </Link>
+  );
 
   return (
     <nav>
       <Link href='/'>
-        <Image src={logo} width={202} height={140} alt='logo' />
+        <Image src={logo} width={164} height={65}  alt='logo' />
       </Link> 
-/*
-      <ul className='nav-links'>
-        <li className={isActive('/female') ? 'active' : ''}>
-          <Link href="/female">&nbsp;Female&nbsp;</Link>
-        </li>
-        <li className={isActive('/male') ? 'active' : ''}>
-          <Link href="/male">&nbsp;Male&nbsp;</Link>
-        </li>
-        <li className={isActive('/kids') ? 'active' : ''}>
-          <Link href="/kids">&nbsp;Kids&nbsp;</Link>
-        </li>
-        <li className={isActive('/kids') ? 'active' : ''}>
-          <Link href="/products">&nbsp;All Products&nbsp;</Link>
-        </li>
-      </ul>
-*/
-      <ul className='nav-links'>
-        <li className={isActive('/female') ? 'active' : ''}>
-          <Link href="/female">&nbsp;Female&nbsp;</Link>
-        </li>
-        <li className={isActive('/male') ? 'active' : ''}>
-          <Link href="/male">&nbsp;Male&nbsp;</Link>
-        </li>
-        <li className={isActive('/kids') ? 'active' : ''}>
-          <Link href="/kids">&nbsp;Kids&nbsp;</Link>
-        </li>
-        <li className={isActive('/kids') ? 'active' : ''}>
-          <Link href="/products">&nbsp;All Products&nbsp;</Link>
-        </li>
-      </ul>
-      <style jsx>{`
-        nav ul {
-          display: flex;
-          list-style: none;
-        }
-        nav ul li {
-          margin-right: 20px;
-        }
-        nav ul li.active a {
-          font-weight: bold;
-          color: #0070f3;
-        }
-      `}</style>
+       
+        <Link href='/solutions'><li className='nav-item'>Solutions</li></Link>
+        <Link href='/platform'><li className='nav-item'>Platform</li></Link>
+        <Link href='/resources'><li className='nav-item'>Resources</li></Link>
+        <Link href='/support'><li className='nav-item'>Support</li></Link> 
+        <Link href='/partners'><li className='nav-item'>Partners</li></Link> 
 
+        <div className='space-bar'> 
+        </div>
 
         <div className='search-bar'>
           <CiSearch />
           <input 
             type='text' 
-            placeholder='What you looking for'/>
+            placeholder='Search here'/>
         </div>
         {/* onChange={(event) => {
               setSearchTerm(event.target.value);
@@ -81,17 +65,20 @@ const Navbar = ({Searchproducts}) => {
       {showCart ?
       <Link href='/cart'>
         <button className='cart' onClick={() => setShowCart(false)}>   
-          <CgShoppingCart size={22} />
+          <CgUser size={22} />
           <span className='cart-item-qty'>{totalQty}</span> 
         </button>
       </Link> 
       : 
       <button className='cart' onClick={() => setShowCart(true)}> 
-        <CgShoppingCart size={22} />
+        <CgUser size={22} />
         <span className='cart-item-qty'>{totalQty}</span>
       </button> 
       }
 
+    <Link href='/contact'><li className='nav-item'>&nbsp;Contact Us&nbsp;</li></Link> 
+
+{/*
       <div className='navbar-smallscreen'>
         <RiMenu3Line color='black' fontSize={27} onClick={() => setToggleMenu(true)} />
         {toggleMenu && (
@@ -115,6 +102,32 @@ const Navbar = ({Searchproducts}) => {
           </div>
         )}
       </div>
+
+*/}
+
+      <div className='navbar-smallscreen'>
+        <RiMenu3Line color='black' fontSize={27} onClick={() => setToggleMenu(true)} />
+        {toggleMenu && (
+          <div className='navbar-smallscreen_overlay'>
+            <Link href='/'>
+              <Image className='logo-small' src={logo} width={140} height={140} alt='logo' />
+            </Link>
+            <RiCloseLine color='black' fontSize={27} className='close_icon' onClick={() => setToggleMenu(false)} />
+            <ul className='navbar-smallscreen_links'>
+              {CartButton}
+              {menuItems.map((item, index) => (
+                <Link key={index} href={item.href}>
+                  <li>{item.label}</li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+
+
+
     </nav>
   )
 }
