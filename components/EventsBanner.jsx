@@ -4,12 +4,15 @@ import event1 from '../src/assets/event1.png'
 import event2 from '../src/assets/event2.png' 
 import event3 from '../src/assets/event3.png' 
 
+import DataGridDemo from '../pages/employee.js'; // Go up two levels if necessary
+import Records from '../pages/records.js'; // Go up two levels if necessary
+
 const EventsBanner = () => {
   return (
     <section className='event-container'>
       <div className='subtitle'>
         <span>PROMOTIONS</span>
-        <h2>Our Promotions Events</h2>
+        <h2>Our Ecommerce Promotional Website</h2>
       </div>
 
       <div className='event-banner'>
@@ -53,7 +56,29 @@ const EventsBanner = () => {
           </div>
         </div>
       </div>
-      
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <hr />
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+        <div className='subtitle'>
+          <span>RECORD ADMINISTRATION SERVICE</span>
+          <h2>Our SaaS Admin User Record Page - Promotional Website</h2>
+        </div>
+      <div className='event-banner'>
+        <div className='event-banner-left'>
+        {/* Call DataGridDemo here */}
+        <DataGridDemo />
+        </div>
+        <div className='event-banner-right'>
+        {/* Call DataGridDemo here 
+        <DataGridDemo />
+        */}
+        </div>
+      </div>
+      {/* Call DataGridDemo here 
+      <Records />
+      */}
     </section>
   )
 }

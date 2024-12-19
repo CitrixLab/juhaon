@@ -1,40 +1,65 @@
-import React from 'react'
-import Image from 'next/image'
-import {CgShoppingCart} from 'react-icons/cg'
-import headerImg from '../src/assets/header.png'
-import featured1 from '../src/assets/Featured1.png';
-import featured2 from '../src/assets/Featured2.png';
-import featured3 from '../src/assets/Featured3.png';
-import featured4 from '../src/assets/Featured4.png';
+import React from 'react' 
+import {CgShoppingCart} from 'react-icons/cg' 
 import Link from 'next/link';
+import Image from 'next/image'; // Import Image from next/image
+import mainbg from '../src/assets/mainbg.jpg'
 
 const HeroBanner = () => {
+ 
+ 
   return (
-    <header className='header'>
+    <header className="header">
+  
+            {/* Background Layer
+            <div className="background-layer"></div>
+          */}
+
+          {/* Background Layer */}
+          <div
+            className="background-layer1"
+            style={{
+              position: 'absolute', // Positioned absolutely to cover the full page
+              marginTop: 0,
+              left: '0px',
+              width: '100%', // Full width
+              height: '50vh', // Full height
+              background: 'rgba(243,243,243,1)', // Set a background color
+              zIndex: -1, // Ensures it stays behind the body content
+            }}
+          >  
+            <Image
+              src={mainbg}  // Path to the background image
+              alt="Background"  // Image alt text for accessibility
+              layout="fill"  // Ensures the image covers the container fully
+              objectFit="cover"  // Maintains aspect ratio while filling the space
+              objectPosition="center"  // Centers the image within the container
+            />
+          </div>
+     
         <div className='header-left-side'>
-            <div className='header-content'>
-                <span>Sale 70%</span>
-                <h1>An Industrial Take on Streetwear</h1>
-                <p>Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.</p>
+            <div className='header-content'> 
+                <h1>CitrixLab Philippines:</h1>
+                <p>Your Trusted IT Solution Provider</p>  
+                  <div style={{width: '90%' , align: 'left'}}>
+                    <small><p>&nbsp;</p> 
+                      At CitrixLab, we provide expert Citrix and NetScaler solutions through training, 
+                      on-demand labs, and tailored IT support to optimize your IT infrastructure and drive 
+                      business performance.
+                    </small>
+                  </div> 
+                <p>&nbsp;</p> 
                 <Link href='/products'>
-                     <button className='btn' type='button'><CgShoppingCart size={26} />  Start Shopping</button>
-                </Link>
+                     <button className='btn' type='button'><CgShoppingCart size={26} />  Learn More</button>
+                </Link>  
             </div>
 
-            <div className='header-featured'>
-                <Image src={featured1} width={100} height={35} alt='img' />
-                <Image src={featured2} width={100} height={35} alt='img' />
-                <Image src={featured3} width={100} height={35} alt='img' />
-                <Image src={featured4} width={100} height={35} alt='img' />
-            </div>
         </div>
 
-        <div className='header-right-side'>
-            <div className='header-circle'>
-                <Image className='header-img' src={headerImg} width={650} height={650} alt='header image' />
-            </div>
+        <div className='header-right-side'> 
         </div>
+
     </header>
+    
   )
 }
 
